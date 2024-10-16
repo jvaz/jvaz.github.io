@@ -48,6 +48,22 @@
             color: #fff;
         }
     </style>
+    <script>
+        function calculateExperience() {
+            const startYear = 2007;
+            const startMonth = 9; // September is month 9
+            const today = new Date();
+            let yearsExperience = today.getFullYear() - startYear;
+
+            if (today.getMonth() + 1 < startMonth) {
+                yearsExperience -= 1;
+            }
+
+            document.getElementById('years-experience').textContent = yearsExperience;
+        }
+
+        window.onload = calculateExperience;
+    </script>
 </head>
 <body>
     <header>
@@ -58,7 +74,7 @@
 
     <section id="main-content" class="container">
         <h2>About Me</h2>
-        <p>As a seasoned IT consultant with over 17 years of experience in the TELCO industry, I have worked with top-tier clients, such as Vodafone and Telefonica, in various countries. My expertise spans development, team leadership, release management, project and program management, and delivery management.</p>
+        <p>As a seasoned IT consultant with over <span id="years-experience"></span> years of experience in the TELCO industry, I have worked with top-tier clients, such as Vodafone and Telefonica, in various countries. My expertise spans development, team leadership, release management, project and program management, and delivery management.</p>
 
         <p>I have successfully managed client relationships, resources, project plans, and budgets. Over the past 7 years, I have focused on Project/Program Management and Delivery Management, overcoming diverse challenges while working in different cultural environments.</p>
 
