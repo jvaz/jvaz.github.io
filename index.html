@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João Vaz - Gen AI Enthusiast & Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: #333;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+            color: #000000;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Floating Elements */
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 2rem;
+            animation: floatRandom 8s linear infinite;
+        }
+
+        @keyframes floatRandom {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #000000, #333333);
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-card:hover {
+            transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            color: #333;
+        }
+
+        .skills h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            color: #333;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: #333;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #000000;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-card {
+                transform: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">JV</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="floating-icons">
+            <i class="fas fa-robot floating-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-brain floating-icon" style="left: 80%; animation-delay: 2s;"></i>
+            <i class="fas fa-code floating-icon" style="left: 60%; animation-delay: 4s;"></i>
+            <i class="fas fa-microchip floating-icon" style="left: 30%; animation-delay: 6s;"></i>
+            <i class="fas fa-network-wired floating-icon" style="left: 70%; animation-delay: 1s;"></i>
+            <i class="fas fa-laptop-code floating-icon" style="left: 20%; animation-delay: 3s;"></i>
+        </div>
+        
+        <div class="hero-content">
+            <h1>João Vaz</h1>
+            <p class="subtitle">Senior IT Consultant & Gen AI Enthusiast</p>
+            <p class="tagline"><span id="yearsExperience"></span>+ years bridging TELCO excellence with AI innovation</p>
+            
+            <div class="cta-buttons">
+                <a href="https://www.linkedin.com/in/jpcvaz/" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-linkedin-in"></i>
+                    LinkedIn Profile
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>
+                        Welcome to my digital space! I'm João, a seasoned IT consultant with over <span id="yearsExperienceAbout"></span> years of experience in the TELCO industry and a passionate Gen AI Enthusiast exploring the frontiers of artificial intelligence.
+                    </p>
+                    <p>
+                        Throughout my career, I've worked with top-tier clients like Vodafone and Telefonica across multiple countries, bringing expertise in development, team leadership, project management, and delivery management. My diverse international background has given me a unique perspective on tackling complex technological challenges.
+                    </p>
+                    <p>
+                        Currently serving as Technical Touch Point Owner at Telefonica Germany through Celfocus, I'm passionate about bridging traditional telecommunications excellence with cutting-edge AI innovations to drive the future of technology.
+                    </p>
+                </div>
+                
+                <div class="about-image">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>João Vaz</h3>
+                        <p>Senior IT Consultant</p>
+                        <p style="font-size: 0.9rem; opacity: 0.8;"><span id="yearsExperienceCard"></span>+ years TELCO • Gen AI Enthusiast</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Areas of Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Project & Program Management</h3>
+                    <p><span id="yearsExperiencePM"></span>+ years leading complex TELCO projects for global clients like Vodafone and Telefonica, managing resources, budgets, and stakeholder relationships across multiple countries.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Generative AI & Innovation</h3>
+                    <p>Passionate about exploring AI's potential in telecommunications, prompt engineering, and integrating cutting-edge AI solutions into traditional business frameworks.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Team Leadership & Delivery</h3>
+                    <p>Extensive experience in team management, technical design, and delivery management across diverse international environments and challenging multicultural projects.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global TELCO Expertise</h3>
+                    <p>Deep industry knowledge from working across Portugal, Czech Republic, Ghana, Turkey, Kenya, and Germany with major telecommunications operators.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Interested in TELCO innovation, AI collaboration, project management opportunities, or discussing how emerging technologies can transform telecommunications?
+            </p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/jpcvaz/" target="_blank" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/jvaz" target="_blank" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:castanheira.vaz+LandingPage@gmail.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com/jvaz" target="_blank" class="social-link" title="Portfolio">
+                    <i class="fas fa-code"></i>
+                </a>
+            </div>
+            
+            <p style="margin-top: 3rem; opacity: 0.8;">
+                © 2025 João Vaz. Built with passion for AI and innovation.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Calculate years of experience dynamically
+        function calculateYearsOfExperience() {
+            const startYear = 2007;
+            const currentYear = new Date().getFullYear();
+            const yearsOfExperience = currentYear - startYear;
+            
+            // Update all experience mentions
+            document.getElementById('yearsExperience').textContent = yearsOfExperience;
+            document.getElementById('yearsExperienceAbout').textContent = yearsOfExperience;
+            document.getElementById('yearsExperienceCard').textContent = yearsOfExperience;
+            
+            // Calculate PM experience (started around 2016 based on your timeline)
+            const pmStartYear = 2016;
+            const pmYearsExperience = Math.max(0, currentYear - pmStartYear);
+            document.getElementById('yearsExperiencePM').textContent = pmYearsExperience;
+        }
+
+        // Calculate on page load
+        calculateYearsOfExperience();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for scroll animations
+        document.querySelectorAll('.skill-card, .about-text, .profile-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Create floating icons dynamically
+        function createFloatingIcon() {
+            const icons = ['fas fa-robot', 'fas fa-brain', 'fas fa-code', 'fas fa-microchip', 'fas fa-network-wired', 'fas fa-laptop-code'];
+            const icon = document.createElement('i');
+            icon.className = icons[Math.floor(Math.random() * icons.length)] + ' floating-icon';
+            icon.style.left = Math.random() * 100 + '%';
+            icon.style.animationDelay = Math.random() * 8 + 's';
+            icon.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
+            
+            document.querySelector('.floating-icons').appendChild(icon);
+            
+            // Remove after animation
+            setTimeout(() => {
+                icon.remove();
+            }, 8000);
+        }
+
+        // Add floating icons periodically
+        setInterval(createFloatingIcon, 3000);
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
